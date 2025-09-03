@@ -1,0 +1,26 @@
+.all {
+    width: 100vw;
+    display: grid;
+    gap: 0;
+}
+
+.feeds {
+    grid-column: 1;
+    width: 18.5vw;
+
+    margin-left: 1vw;
+    margin-right: .05vw;
+}
+
+.items {
+    grid-column: 3;
+    width: 18.5vw;
+
+    margin-left: .1vw;
+    margin-right: .05vw;
+}
+
+.content {
+    grid-column: 5;
+    width: 60vw;
+}
