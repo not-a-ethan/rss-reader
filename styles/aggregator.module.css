@@ -10,6 +10,8 @@
 
     margin-left: 1vw;
     margin-right: .05vw;
+
+    height: 100vh;
 }
 
 .items {
@@ -23,4 +25,9 @@
 .content {
     grid-column: 5;
     width: 60vw;
+}
+
+.action {
+    margin-bottom: 1%;
+    margin-right: 1%;
 }
