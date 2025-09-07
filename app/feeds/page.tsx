@@ -16,26 +16,40 @@ import styles from "../../styles/aggregator.module.css"
 export default function Aggregator() {
     const {isOpen, onOpen, onOpenChange} = useDisclosure();
 
-    const [feed, setFeed] = useState(0);
-    const [item, setItem] = useState([]);
+    const [activeFeed, setActiveFeed] = useState(0);
+    const [currentItem, setCurrentItem] = useState([]);
+    const [articles, setArticles] = useState([
+        {
+            feed: "Feed Title",
+            title: "Article Title",
+            content: "Culpa proident magna tempor enim duis enim esse excepteur commodo. Non fugiat do irure incididunt consectetur Lorem est id nulla.",
+            time: "Some time ago"
+        },
+        {
+            feed: "Feed Title",
+            title: "Another article Title",
+            content: "Aliqua id reprehenderit reprehenderit adipisicing sit minim ipsum eiusmod quis. Officia sit non officia excepteur occaecat est cupidatat nisi mollit.",
+            time: "Some time ago"
+        }
+    ])
 
     return (
         <>            
             <div className={`${styles.all}`}>
                 <span className={`${styles.feeds}`}>
-                    <Feeds onOpen={onOpen} feed={feed} setFeed={setFeed}  />
+                    <Feeds onOpen={onOpen} activeFeed={activeFeed} setActiveFeed={setActiveFeed}  />
                 </span>
 
                 <Divider orientation="vertical" />
 
                 <span className={`${styles.items}`}>
-                    <Items item={item} setItem={setItem} />
+                    <Items currentItem={currentItem} setCurrentItem={setCurrentItem} />
                 </span>
 
                 <Divider orientation="vertical" />
 
                 <span className={`${styles.content}`}>
-                    <Content />
+                    <Content currentItem={currentItem} articles={articles} />
                 </span>
             </div>
 

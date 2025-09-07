@@ -6,13 +6,13 @@ import pageStyles from "../../../styles/aggregator.module.css";
 
 export function Feeds(props: any) {
 
-    const activeFeed = props.feed;
-    const setFeed = props.setFeed;
+    const activeFeed = props.activeFeed;
+    const setActiveFeed = props.setActiveFeed;
 
     function setFeedFunc(e: any) {
         const id = e.target.id;
 
-        setFeed(id);
+        setActiveFeed(id);
     }
 
     return (

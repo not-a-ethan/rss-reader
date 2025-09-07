@@ -5,15 +5,15 @@ import pageStyles from "../../../styles/aggregator.module.css";
 import styles from "../../../styles/feeds/items.module.css"
 
 export function Items(props: any) {
-    const item: string[] = props.item;
-    const setItem = props.setItem;
+    const currentItem: string[] = props.currentItem;
+    const setCurrentItem = props.setCurrentItem;
 
     function selectItem(e: any) {
         const id = e.target.id;
         //Feed name, Item Name, Time
         const parts = id.split("-");
 
-        setItem(parts);
+        setCurrentItem(parts);
     }
 
     return (
@@ -21,7 +21,7 @@ export function Items(props: any) {
             <Button isIconOnly className={`${pageStyles.action}`}>↻</Button>
             <Button isIconOnly className={`${pageStyles.action}`}>✉️</Button>
 
-            <Card className={`${styles.item} ${item.join("-") == "Feed Title-Article Title-Some time ago"  ? styles.activeItem : ""}`} onPressUp={selectItem} id="Feed Title-Article Title-Some time ago" >
+            <Card className={`${styles.item} ${currentItem.join("-") == "Feed Title-Article Title-Some time ago"  ? styles.activeItem : ""}`} onPressUp={selectItem} id="Feed Title-Article Title-Some time ago" >
                 <CardHeader className={`${styles.cardHeader}`}>
                     <h2 onClick={selectItem} id={"Feed Title-Article Title-Some time ago" }>Article Title</h2>
                 </CardHeader>
@@ -35,7 +35,7 @@ export function Items(props: any) {
                 </CardFooter>
             </Card>
 
-            <Card className={`${styles.item} ${item.join("-") == "Feed Title-Another article Title-Some time ago"  ? styles.activeItem : ""}`} onPressUp={selectItem} id="Feed Title-Another article Title-Some time ago">
+            <Card className={`${styles.item} ${currentItem.join("-") == "Feed Title-Another article Title-Some time ago"  ? styles.activeItem : ""}`} onPressUp={selectItem} id="Feed Title-Another article Title-Some time ago">
                 <CardHeader className={`${styles.cardHeader}`}>
                     <h2 onClick={selectItem} id="Feed Title-Another article Title-Some time ago">Another article Title</h2>
                 </CardHeader>

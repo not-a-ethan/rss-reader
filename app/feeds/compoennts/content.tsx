@@ -1,11 +1,31 @@
 export function Content(props: any) {
+    const currentItem = props.currentItem;
+    const articles = props.articles;
+
+    const feedName = currentItem[0];
+    const itemName = currentItem[1];
+    const time = currentItem[2];
+
+    let body;
+
+    for (let i = 0; i < articles.length; i++) {
+        const currentFeedName = articles[i]["feed"];
+        const currentTitle = articles[i]["title"];
+        const currentTime = articles[i]["time"];
+
+        if (currentFeedName == feedName && currentTitle == itemName && currentTime == time) {
+            body = articles[i]["content"];
+            break;
+        }
+    }
+
     return (
         <>
-            <h1>Item Title</h1>
+            <h2>{itemName}</h2>
 
-            <small>time stamp</small>
+            <small>{time}</small>
 
-            <p>Consequat eu enim magna ea deserunt fugiat sit cupidatat quis exercitation commodo ex adipisicing quis laboris cupidatat reprehenderit veniam fugiat eu nostrud ad et Lorem do irure non adipisicing qui. Cillum ex esse esse aliquip enim dolor Lorem duis in mollit est dolore duis non minim sit dolore quis incididunt esse ullamco culpa occaecat Lorem laboris velit mollit enim cillum. </p>
+            <p>{body}</p>
         </>
-    )
-}
+    );
+};
