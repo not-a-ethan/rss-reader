@@ -1,6 +1,9 @@
 'use client';
 
 import { useState } from "react";
+import { useRouter } from "next/navigation";
+
+import { useSession } from "next-auth/react";
 
 import { Divider } from "@heroui/divider";
 import { Modal, ModalContent, ModalHeader, ModalBody, ModalFooter, useDisclosure } from "@heroui/modal";
@@ -14,7 +17,7 @@ import { Content } from "./compoennts/content";
 import styles from "../../styles/aggregator.module.css"
 
 export default function Aggregator() {
-    const {isOpen, onOpen, onOpenChange} = useDisclosure();
+    const { isOpen, onOpen, onOpenChange } = useDisclosure();
 
     const [activeFeed, setActiveFeed] = useState(0);
     const [currentItem, setCurrentItem] = useState([]);
@@ -32,6 +35,22 @@ export default function Aggregator() {
             time: "Some time ago"
         }
     ])
+
+    const { data: session, status } = useSession();
+    const router = useRouter();
+
+    if (status === "loading") {
+        return (
+            <p>Loading...</p>
+        );
+    };
+
+    if (status === "unauthenticated") {
+        router.replace("/api/auth/signin");
+        return (
+            <p>403 | Login in to see this page</p>
+        );
+    };
 
     return (
         <>            
