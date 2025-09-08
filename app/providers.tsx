@@ -34,4 +34,4 @@ export function Providers({ children, themeProps }: ProvidersProps) {
       </NextThemesProvider>
     </HeroUIProvider>
   );
-}
+};

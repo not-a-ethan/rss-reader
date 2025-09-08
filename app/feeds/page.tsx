@@ -14,7 +14,9 @@ import { Feeds } from "./compoennts/feeds";
 import { Items } from "./compoennts/items";
 import { Content } from "./compoennts/content";
 
-import styles from "../../styles/aggregator.module.css"
+import { getAPI } from "@/helpers/getAPI";
+
+import styles from "../../styles/aggregator.module.css";
 
 export default function Aggregator() {
     const { isOpen, onOpen, onOpenChange } = useDisclosure();
@@ -34,10 +36,67 @@ export default function Aggregator() {
             content: "Aliqua id reprehenderit reprehenderit adipisicing sit minim ipsum eiusmod quis. Officia sit non officia excepteur occaecat est cupidatat nisi mollit.",
             time: "Some time ago"
         }
-    ])
+    ]);
 
     const { data: session, status } = useSession();
     const router = useRouter();
+
+    const { rssItems, rssError, rssLoading } = getAPI(`../api/rss?url=${"https://sample-feeds.rowanmanning.com/examples/23f07db95d2d9a8b422a186600eae22c/feed.xml"}`, ["rssItems", "rssError", "rssLoading"]);
+
+    if (rssItems) {
+        const parser = new DOMParser();
+        const stuff = parser.parseFromString(rssItems["xml"], "text/xml");
+
+        // stuff is the rss items feed
+
+        return (
+            <>            
+                <div className={`${styles.all}`}>
+                    <span className={`${styles.feeds}`}>
+                        <Feeds onOpen={onOpen} activeFeed={activeFeed} setActiveFeed={setActiveFeed}  />
+                    </span>
+
+                    <Divider orientation="vertical" />
+
+                    <span className={`${styles.items}`}>
+                        <Items currentItem={currentItem} setCurrentItem={setCurrentItem} />
+                    </span>
+
+                    <Divider orientation="vertical" />
+
+                    <span className={`${styles.content}`}>
+                        <Content currentItem={currentItem} articles={articles} a={stuff} />
+                    </span>
+                </div>
+
+                <Modal isOpen={isOpen} onOpenChange={onOpenChange}>
+                    <ModalContent>
+                    {(onClose) => (
+                        <>
+                        <ModalHeader>New RSS Feed</ModalHeader>
+
+                        <ModalBody>
+                            <Input label="Feed name" />
+
+                            <Input label="Feed URL" />
+                        </ModalBody>
+
+                        <ModalFooter>
+                            <Button color="danger" variant="light" onPress={onClose}>
+                            Cancel
+                            </Button>
+
+                            <Button color="primary" onPress={onClose}>
+                            Add Feed
+                            </Button>
+                        </ModalFooter>
+                        </>
+                    )}
+                    </ModalContent>
+                </Modal>
+            </>
+        );
+    };
 
     if (status === "loading") {
         return (
@@ -98,5 +157,5 @@ export default function Aggregator() {
                 </ModalContent>
             </Modal>
         </>
-    )
-}
+    );
+};

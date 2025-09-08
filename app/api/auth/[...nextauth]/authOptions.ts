@@ -1,5 +1,5 @@
-import { type NextAuthOptions } from "next-auth"
-import GithubProvider from "next-auth/providers/github"
+import { type NextAuthOptions } from "next-auth";
+import GithubProvider from "next-auth/providers/github";
 
 //import { accountExists } from "@/helpers/accountExists";
 //import { createAccount } from "@/helpers/createAccount";
@@ -26,4 +26,4 @@ export const authOptions: NextAuthOptions = {
            return true;
 		},
 	}
-}
+};

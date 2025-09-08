@@ -6,6 +6,16 @@ export function Content(props: any) {
     const itemName = currentItem[1];
     const time = currentItem[2];
 
+    const a: string | null = props.a;
+
+    if (!a) {
+        return (
+            <>
+                {a}
+            </>
+        );
+    };
+
     let body;
 
     for (let i = 0; i < articles.length; i++) {
@@ -16,8 +26,8 @@ export function Content(props: any) {
         if (currentFeedName == feedName && currentTitle == itemName && currentTime == time) {
             body = articles[i]["content"];
             break;
-        }
-    }
+        };
+    };
 
     return (
         <>

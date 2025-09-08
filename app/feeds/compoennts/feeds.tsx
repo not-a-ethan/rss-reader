@@ -13,7 +13,7 @@ export function Feeds(props: any) {
         const id = e.target.id;
 
         setActiveFeed(id);
-    }
+    };
 
     return (
         <>

@@ -14,7 +14,7 @@ export function Items(props: any) {
         const parts = id.split("-");
 
         setCurrentItem(parts);
-    }
+    };
 
     return (
         <>
