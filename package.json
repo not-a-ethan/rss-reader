@@ -10,8 +10,6 @@
     "postinstall": "nuxt prepare"
   },
   "dependencies": {
-    "@auth0/auth0-nuxt": "^1.0.0-beta.1",
-    "@sidebase/nuxt-auth": "^1.1.1",
     "nuxt": "^4.2.2",
     "vue": "^3.5.26",
     "vue-router": "^4.6.4"

@@ -4,11 +4,5 @@ export default defineNuxtConfig({
   modules: ['@sidebase/nuxt-auth'],
   auth: {
     originEnvKey: "NUXT_AUTH_ORIGIN",
-  },
-  runtimeConfig: {
-    authSecret: process.env.NUXT_AUTH_SECRET,
-    clientId: process.env.clientId,
-    clientSecret: process.env.clientSecret,
-    authOrigin: process.env.NUXT_AUTH_ORIGIN
   }
 });
