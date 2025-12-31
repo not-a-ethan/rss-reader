@@ -1,0 +1,68 @@
+#container {
+    top: 0;
+    left: 0;
+
+    position: absolute;
+
+    display: grid;
+    grid-template-columns: 1fr 1fr 6fr;
+    gap: 30px;
+
+    width: 100vw;
+    height: 100vh;
+
+    overflow: hidden;
+
+    background-color: black;
+    color: white;
+}
+
+#feeds {
+    grid-column: 1;
+
+    margin-top: 10%;
+
+    overflow-x: hidden;
+    overflow-y: scroll;
+
+    padding-left: 5px;
+    padding-right: 5px;
+
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+}
+
+#feeds::-webkit-scrollbar {
+    display: none;
+}
+
+#items {
+    grid-column: 2;
+}
+
+#content {
+    grid-column: 3;
+
+    overflow-x: hidden;
+    overflow-y: scroll;
+}
+
+.feed {
+    margin-left: 10px;
+    margin-bottom: 5px;
+
+    border: gray 1px solid;
+    border-radius: 10px;
+}
+
+.feed > h3 {
+    margin: 0px;
+
+    margin-top: 5px;
+    margin-bottom: 5px;
+    margin-left: 5px;
+}
+
+.item {
+    background-color: gray;
+}
