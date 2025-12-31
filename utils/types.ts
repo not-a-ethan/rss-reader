@@ -4,3 +4,13 @@ export interface FeedsTable {
     url: string
 };
 
+export interface RssItem {
+    title: string,
+    link: string,
+    pubDate: string,
+    author: string,
+    content: string,
+    contentSnippet: string,
+    id: string,
+    isoDate: string
+};
