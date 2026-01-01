@@ -30,13 +30,19 @@ import type { FeedsTable, RssItem } from '~~/utils/types';
                 <h3>All feeds</h3>
             </div>
 
-            <div v-for="(feed, i) in feeds" :key="feed.id ?? i" class="feed" @click="selectedFeed.id = i">
+            <div v-for="(feed, i) in feeds" :key="feed.id ?? i" class="feed" @click="selectedFeed.id = feed.id">
                 <h3>{{ feed["name"] }}</h3>
             </div>
         </div>
 
         <div id="items">
-            <div v-for="(item, i) in allItems" :key="i" class="item" @click="selectedItem.id = i">
+            <div v-if="selectedFeed.id === 0" v-for="(item, i) in allItems" :key="i" class="item" @click="selectedItem.id = i">
+                <h3>{{ item["title"] }}</h3>
+
+                <p>{{ item["contentSnippet"] }}</p>
+            </div>
+
+            <div v-else v-for="(item, j) in items[selectedFeed.id]" :key="j" class="item" @click="selectedItem.id = j">
                 <h3>{{ item["title"] }}</h3>
 
                 <p>{{ item["contentSnippet"] }}</p>
