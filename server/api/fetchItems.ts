@@ -38,7 +38,7 @@ export default defineEventHandler(async (event) => {
             };
         };
 
-        const items: RssItem[] = await fetchFeed(url);
+        const items: RssItem[] = await fetchFeed(decodeURIComponent(url));
     
         setResponseStatus(event, 200);
         

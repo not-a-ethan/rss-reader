@@ -1,5 +1,19 @@
-<script>
+<script setup lang="ts">
+import type { FeedsTable, RssItem } from '~~/utils/types';
 
+    const { data }: any = await useFetch("/api/feeds", { lazy: true });
+    const feeds: FeedsTable[] = data["value"]["feeds"];
+
+    const items: { [key: string]: RssItem[] } = {};
+
+    for (let i = 0; i < feeds.length; i++) {
+        const thisUrl: string = encodeURIComponent(feeds[i]["url"]);
+        const { data }: any = await useFetch(`/api/fetchItems?url=${thisUrl}`);
+                        
+        items[feeds[i]["id"]] = data.value.items;
+    };
+    
+    console.log(items);
 </script>
 
 <template>
