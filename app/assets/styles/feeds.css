@@ -40,6 +40,7 @@
     grid-column: 2;
 
     overflow-y: scroll;
+    overflow-x: hidden;
 }
 
 #content {
@@ -71,8 +72,28 @@
     background-color: gray;
 
     cursor: pointer;
+
+    border-radius: 15px;
+
+    padding-left: 5px;
+    padding-right: 5px;
+    padding-bottom: 1%;
+    
+    margin-bottom: 5px;
+}
+
+.item > h3 {
+    padding-top: 5px;
 }
 
 .item > p {
     font-size: small;
+}
+
+.selectedFeed {
+    background-color: rgb(50, 50, 50);
+}
+
+.selectedItem {
+    background-color: rgb(51, 51, 51);
 }
