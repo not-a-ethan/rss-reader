@@ -5,7 +5,7 @@
     position: absolute;
 
     display: grid;
-    grid-template-columns: 1fr 1fr 6fr;
+    grid-template-columns: 1fr 2fr 6fr;
     gap: 30px;
 
     width: 100vw;
@@ -38,6 +38,8 @@
 
 #items {
     grid-column: 2;
+
+    overflow-y: scroll;
 }
 
 #content {
@@ -53,6 +55,8 @@
 
     border: gray 1px solid;
     border-radius: 10px;
+
+    cursor: pointer;
 }
 
 .feed > h3 {
@@ -65,4 +69,10 @@
 
 .item {
     background-color: gray;
+
+    cursor: pointer;
+}
+
+.item > p {
+    font-size: small;
 }
