@@ -1,5 +1,7 @@
 <script setup lang="ts">
-import type { FeedsTable, RssItem } from '~~/utils/types';
+    import AddFeed from '~/components/AddFeed.vue';
+
+    import type { FeedsTable, RssItem } from '~~/utils/types';
 
     const { data }: any = await useFetch("/api/feeds", { lazy: true });
     const feeds: FeedsTable[] = data["value"]["feeds"];
@@ -20,7 +22,7 @@ import type { FeedsTable, RssItem } from '~~/utils/types';
     });
 
     const selectedItem = reactive({
-        id: -1
+        id: -2
     });
 </script>
 
@@ -37,6 +39,10 @@ import type { FeedsTable, RssItem } from '~~/utils/types';
         </div>
 
         <div id="items">
+            <div :class="-1 === selectedItem.id ? 'item selectedItem' : 'item'" @click="selectedItem.id=-1">
+                Add Feed
+            </div>
+
             <div v-if="selectedFeed.id === 0" v-for="(item, i) in allItems" :key="i" :class="i === selectedItem.id ? 'item selectedItem' : 'item'" @click="selectedItem.id=i">
                 <h3>{{ item["title"] }}</h3>
 
@@ -51,9 +57,15 @@ import type { FeedsTable, RssItem } from '~~/utils/types';
         </div>
 
         <div id="content">
-            <h1><a target="_blank" :href=allItems[selectedItem.id]?.link>{{ allItems[selectedItem.id]?.title }}</a></h1>
+            <div v-if="selectedItem.id === -1">
+                <AddFeed />
+            </div>
+
+            <div v-else>
+                <h1><a target="_blank" :href=allItems[selectedItem.id]?.link>{{ allItems[selectedItem.id]?.title }}</a></h1>
             
-            <div v-html="allItems[selectedItem.id]?.content"></div>
+                <div v-html="allItems[selectedItem.id]?.content"></div>
+            </div>
         </div>
     </div>
 </template>
